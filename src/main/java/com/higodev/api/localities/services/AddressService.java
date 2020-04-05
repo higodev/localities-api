@@ -48,7 +48,6 @@ public class AddressService extends ViaCepWS {
 		} else {
 
 			ViaCepDto viaCepDto = findViaCepByPostalCode(postalCodeTreated);
-
 			Address addressNew = new Address(viaCepDto);
 			addressNew.setPostalCode(postalCodeTreated);
 			repository.save(addressNew);
