@@ -12,11 +12,15 @@ import javax.persistence.Table;
 
 import com.higodev.api.localities.utils.viacep.ViaCepDto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "adresses")
 @ToString(onlyExplicitlyIncluded = true)
 public class Address implements Serializable {

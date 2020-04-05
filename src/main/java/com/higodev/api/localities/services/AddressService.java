@@ -18,6 +18,7 @@ public class AddressService extends ViaCepWS {
 	@Autowired
 	private AddressRepository repository;
 
+	@Autowired
 	private UtilDate utilDate;
 
 	private String getPostalCodeTreated(String postalCode) {
