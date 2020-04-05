@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.higodev.api.localities.domains.Address;
+import com.higodev.api.localities.dtos.AddressDto;
 import com.higodev.api.localities.services.AddressService;
 
 import io.swagger.annotations.Api;
 
-@Api(tags = "Adresses", description = "List of addresses searched by zip code, city, state and street")
+@Api(tags = "Adresses", description = "List of addresses searched by postal code, city, state and street")
 @RestController
 @RequestMapping(path = "/adresses")
 public class AddressResource {
@@ -20,7 +20,7 @@ public class AddressResource {
 	private AddressService service;
 
 	@GetMapping(path = "/postalCode/{postalCode}")
-	public Address findByCodePostal(@PathVariable("postalCode") String postalCode) {
+	public AddressDto findByCodePostal(@PathVariable("postalCode") String postalCode) {
 		return service.findByCodePostal(postalCode);
 	}
 	

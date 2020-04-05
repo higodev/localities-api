@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.higodev.api.localities.domains.Address;
+import com.higodev.api.localities.dtos.AddressDto;
 import com.higodev.api.localities.repositories.AddressRepository;
 import com.higodev.api.localities.utils.UtilDate;
 import com.higodev.api.localities.utils.viacep.ViaCepDto;
@@ -29,7 +30,7 @@ public class AddressService extends ViaCepWS {
 				.trim();
 	}
 	
-	public Address findByCodePostal(String postalCode) {
+	public AddressDto findByCodePostal(String postalCode) {
 
 		String postalCodeTreated = getPostalCodeTreated(postalCode);
 		Optional<Address> address = repository.findByPostalCode(postalCodeTreated);
@@ -44,7 +45,7 @@ public class AddressService extends ViaCepWS {
 				repository.deleteById(addressFound.getId());
 			}
 
-			return addressFound;
+			return new AddressDto(addressFound);
 
 		} else {
 
@@ -53,7 +54,7 @@ public class AddressService extends ViaCepWS {
 			addressNew.setPostalCode(postalCodeTreated);
 			repository.save(addressNew);
 			
-			return addressNew;
+			return new AddressDto(addressNew);
 
 		}
 
