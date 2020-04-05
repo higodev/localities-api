@@ -13,8 +13,11 @@ import org.springframework.web.server.ResponseStatusException;
 import com.higodev.api.localities.dtos.CityDto;
 import com.higodev.api.localities.services.CityService;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = "Cities", description = "List of cities in Brazil")
 @RestController
-@RequestMapping(path = "cities")
+@RequestMapping(path = "/cities")
 public class CityResource {
 	
 	@Autowired
@@ -25,9 +28,14 @@ public class CityResource {
 		return service.findAll();
 	}
 	
-	@GetMapping(path = "/{cityId}")
-	public CityDto findById(@PathVariable("cityId") long cityId) {
-		return service.findById(cityId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+	@GetMapping(path = "/{ibge}")
+	public CityDto findById(@PathVariable(value = "ibge") String ibge) {
+		return service.findByIbge(ibge).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+	}
+	
+	@GetMapping(path = "/uf/{uf}")
+	public List<CityDto> findByUf(@PathVariable(value = "uf") String uf) {
+		return service.findByUf(uf);
 	}
 	
 	

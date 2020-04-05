@@ -1,0 +1,16 @@
+server:
+  port: 8080
+  
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+    open-in-view: true
+    hibernate:
+      ddl-auto: update
+      
+  datasource:
+      url: jdbc:mysql://localhost:3306/higodev_localities
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver

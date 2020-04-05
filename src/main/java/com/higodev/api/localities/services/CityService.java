@@ -19,9 +19,13 @@ public class CityService {
 	public List<CityDto> findAll(){
 		return repository.findAll().stream().map(c -> new CityDto(c)).collect(Collectors.toList());
 	}
+
+	public List<CityDto> findByUf(String uf){
+		return repository.findByUf(uf).stream().map(c -> new CityDto(c)).collect(Collectors.toList());
+	}
 	
-	public Optional<CityDto> findById(long cityId) {
-		return repository.findById(cityId).map(c -> new CityDto(c));
+	public Optional<CityDto> findByIbge(String ibge) {
+		return repository.findByIbge(ibge).map(c -> new CityDto(c));
 	}
 	
 }
